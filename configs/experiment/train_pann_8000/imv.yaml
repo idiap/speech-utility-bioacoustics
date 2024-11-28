@@ -1,0 +1,35 @@
+# @package _global_
+
+defaults:
+  # - /dask: sgpu
+  - override /data: imv
+  - override /model: dense_net
+
+sample_rate: 8000
+tags: ${data.data.name}_${data.data.selected_labels}_${mname}_densenet_sr${sample_rate}_bs${data.batch_size}_lr${model.optimizer.lr}
+
+mname: pann_cnn14
+
+model:
+  exp_name: ${tags}
+  net:
+    num_input: 2048
+
+data:
+  data:
+    selected_labels: ???
+    # nan_rows: ${paths.root_dir}/pkl/${mname}/${data.data.name}_nans.npy
+    transformation:
+      _target_: src.transforms.pann.PANN
+      feats_dir: ${paths.imv_dir}/${mname}_${sample_rate}/all_${mname}.npz
+      # nan_rows: ${paths.root_dir}/pkl/${mname}/${data.data.name}_nans.npy
+    standardization:
+      _target_: src.transforms.standardize.Standardize
+      pkl_dir: ${paths.root_dir}/pkl/${mname}/${data.data.name}_${sample_rate}_train_means_std.npz
+
+logger:
+  wandb:
+    group: ${data.data.name}_${data.data.selected_labels}_${mname}_densenet_sr${sample_rate}
+    name: ${tags}
+  aim:
+    experiment: ${data.data.name}_${data.data.selected_labels}_${mname}

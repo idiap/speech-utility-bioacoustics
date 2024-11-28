@@ -1,0 +1,27 @@
+# @package _global_
+
+defaults:
+  # - /dask: sgpu
+  - override /data: imv
+
+sample_rate: 32000
+tags: extract_${data.data.name}_${mname}_${sample_rate}
+seed: 12345
+
+data:
+  data:
+    selected_labels: ???
+    # nan_rows: ${paths.root_dir}/pkl/${mname}/${data.data.name}_nans.npy
+    transformation:
+      _target_: src.transforms.pann.PANN
+      feats_dir: ${paths.imv_dir}/${mname}_${sample_rate}/all_${mname}.npz
+      # nan_rows: ${paths.root_dir}/pkl/${mname}/${data.data.name}_nans.npy
+    standardization:
+      _target_: src.transforms.standardize.Standardize
+      pkl_dir: ${paths.root_dir}/pkl/${mname}/${data.data.name}_${sample_rate}_train_means_std.npz
+
+mname: pann_cnn14
+mname_short: pann
+
+paths:
+  pkl_dir: ${paths.pdist_dir}/${mname_short}_${sample_rate}/${data.data.selected_labels}/${data.data.name}_${sample_rate}

@@ -1,0 +1,31 @@
+# @package _global_
+
+defaults:
+  # - /dask: sgpu
+  - override /data: imv
+
+sample_rate: 32000
+tags: extract_${data.data.name}_panncnn14_${sample_rate}
+seed: 12345
+
+data: 
+  data:
+    selected_labels: calltype # irrelevant for extraction
+
+batch_size: 32
+min_len: 10000
+
+model:
+  _target_: src.models.components.pann_net.Cnn14
+  sample_rate: ${sample_rate}
+  window_size: 1024 # default: 1024
+  hop_size: 320 # default: 320
+  mel_bins: 64 # default: 64
+  fmin: 50 # default: 50
+  fmax: 16000 # default: 14000
+  classes_num: 527 # not really used
+
+paths:
+  model_file: ${paths.pann_dir}/Cnn14_mAP=0.431.pth
+  feats_dir: ${paths.imv_dir}/pann_cnn14_${sample_rate}
+  pkl_dir: ${paths.root_dir}/pkl/pann_cnn14/${data.data.name}_${sample_rate}_train_means_std.npz

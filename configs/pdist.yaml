@@ -1,0 +1,34 @@
+defaults:
+  - paths: default  
+  - _self_
+  - data: ???
+  - extras: default
+  - hydra: default
+  - logger: null
+  - experiment: null
+  - hparams_search: null
+  - optional local: default
+  - debug: null
+
+logger:
+  wandb:
+    offline: True
+
+task_name: "pdist"
+tags: ["pdist"]
+
+# set False to skip model training
+train: False
+
+# evaluate on test set, using best model weights achieved during training
+# lightning chooses best weights based on the metric specified in checkpoint callback
+test: False
+
+# compile model for faster training with pytorch 2.0
+compile: False
+
+# simply provide checkpoint path to resume training
+ckpt_path: null
+
+# seed for random number generators in pytorch, numpy and python.random
+seed: null

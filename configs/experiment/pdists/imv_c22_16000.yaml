@@ -1,0 +1,24 @@
+# @package _global_
+
+defaults:
+  # - /dask: sgpu
+  - override /data: imv
+
+sample_rate: 16000
+tags: extract_${data.data.name}_${mname}_${sample_rate}
+seed: 12345
+
+data:
+  data:
+    selected_labels: ???
+    transformation:
+      _target_: src.transforms.catch22.Catch22
+      feats_dir: ${paths.imv_dir}/${mname}_${sample_rate}/all_${mname}.npz
+    standardization:
+      _target_: src.transforms.standardize.Standardize
+      pkl_dir: ${paths.root_dir}/pkl/${mname}/${data.data.name}_${sample_rate}_train_means_std.npz
+
+mname: catch22
+
+paths:
+  pkl_dir: ${paths.pdist_dir}/${mname}_${sample_rate}/${data.data.selected_labels}/${data.data.name}_${sample_rate}

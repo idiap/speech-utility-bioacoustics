@@ -1,0 +1,2 @@
+include README.md LICENSE environment.yaml version.txt pyproject.toml
+recursive-include configs hydra_plugins scripts src *
