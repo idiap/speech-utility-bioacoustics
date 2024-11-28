@@ -40,7 +40,21 @@ Please cite the original authors for their work in any publication(s) that uses 
 
 InfantMarmosetsVox is a dataset for multi-class call-type and caller identification. It contains audio recordings of different individual marmosets and their call-types. The dataset contains a total of 350 files of precisely labelled 10-minute audio recordings across all caller classes. The audio was recorded from five pairs of infant marmoset twins, each recorded individually in two separate sound-proofed recording rooms at a sampling rate of 44.1 kHz. The start and end time, call-type, and marmoset identity of each vocalization are provided, labeled by an experienced researcher. It contains a total of 169,318 labeled audio segments, which amounts to 72,921 vocalization segments once removing the "Silence" and "Noise" classes. There are 11 different call-types (excluding "Silence" and "Noise") and 10 different caller identities. 
 
-The dataset is publicly available [here](https://www.idiap.ch/en/dataset/infantmarmosetsvox/index_html), and contains a usable Pytorch `Dataset` and `Dataloader`. Any publication (eg. conference paper, journal article, technical report, book chapter, etc) resulting from the usage of InfantsMarmosetVox **must cite** this [paper](https://www.isca-speech.org/archive/interspeech_2023/sarkar23_interspeech.html). More information on the usage is provided in the `README.txt` file of the dataset.
+The dataset is publicly available [here](https://www.idiap.ch/en/dataset/infantmarmosetsvox/index_html), and contains a usable Pytorch `Dataset` and `Dataloader`. Any publication (eg. conference paper, journal article, technical report, book chapter, etc) resulting from the usage of InfantsMarmosetVox **must cite** this [paper](https://www.isca-speech.org/archive/interspeech_2023/sarkar23_interspeech.html):
+
+```bib
+@inproceedings{sarkar23_interspeech,
+  title     = {Can Self-Supervised Neural Representations Pre-Trained on Human Speech distinguish Animal Callers?},
+  author    = {Eklavya Sarkar and Mathew Magimai.-Doss},
+  year      = {2023},
+  booktitle = {INTERSPEECH 2023},
+  pages     = {1189--1193},
+  doi       = {10.21437/Interspeech.2023-1968},
+  issn      = {2958-1796},
+}
+```
+
+More information on the usage is provided in the `README.txt` file of the dataset.
 
 ## Installation
 
